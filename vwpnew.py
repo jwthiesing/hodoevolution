@@ -38,7 +38,7 @@ def make_heights(Reach, elev, mask, instrumentheight=0.0):
 # Finds the vertical wind profile from the lidar data
 def derive_vwp(R, AZ, VR, elevation, mask, params):
 	import pandas as pd
-	import read_plot_func as dlplot
+	#import read_plot_func as dlplot
 
 	HEIGHTINTERVAL = params['height_bin_width']
 	HEIGHTMIN, HEIGHTMAX = params['height_bounds']
@@ -52,7 +52,7 @@ def derive_vwp(R, AZ, VR, elevation, mask, params):
 	Reach = np.tile(R,(VR.shape[0],1))
 
 	# Create heights array for binning & height ranges
-	heights = dlplot.make_heights(Reach, eleveach, mask)
+	heights = make_heights(Reach, eleveach, mask)
 	#hmin = heights.min()
 	heightmins = np.arange(HEIGHTMIN, HEIGHTMAX, HEIGHTINTERVAL)
 	#heightmins = np.arange(hmin, heights.max(), HEIGHTINTERVAL)
