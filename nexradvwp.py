@@ -20,14 +20,14 @@ def calculate_ground_dist(Reach, eleveach):
 
 # Filters data arrays
 def nexrad_filter_data(R, AZ, EL, VR, params):
-	import read_plot_func as dlplot
+	#import read_plot_func as dlplot
 
 	# R is the only one that isn't per-sweep
 	eleveach = np.tile(EL,(VR.shape[1],1)).T
 	Reach = np.tile(R,(eleveach.shape[0],1))
 	eleveach = np.pad(eleveach, ((0,1), (0,0)), mode='edge')
 	Reach = np.pad(Reach, ((0,1), (0,0)), mode='edge')
-	S = dlplot.calculate_ground_dist(Reach, eleveach)[:-1]
+	S = calculate_ground_dist(Reach, eleveach)[:-1]
 
 	new_mask = np.full(VR.shape, False)
 	exceeds_dist = np.where(S > params['nexrad_dist_limit'])
